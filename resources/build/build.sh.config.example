@@ -1,0 +1,26 @@
+#!/bin/bash
+#===============================================================================
+# * LaTeX thesis template (build config)
+# * @author  : Alexander willner (willner@cs.uni-bonn.de)
+#===============================================================================
+DEBUG=0;               # 0 = output to log, 1 = show output
+DOINDEX=0;             # 0 = no index, 1 = create index
+DOBIBTEX=1;            # 0 = no bibliography, 1 = create bibliography
+LANG="en";             # e.g. en, de, ...
+LANGEXT="en_US.UTF-8"  # e.g. en_US.UTF-8, de_DE.UTF-8
+DIR_TMP="/tmp/builner";
+DIR_SRC="src";
+DIR_RES="resources";
+DIR_IMG="$DIR_RES/images";
+DIR_LYT="$DIR_RES/layout";
+DIR_ANA="$DIR_RES/analyzer";
+DIR_SCR="$DIR_RES/scripts";
+DIR_BLD="$DIR_RES/build";
+REQ_DIRS="$DIR_TMP $DIR_DEST $DIR_SRC $DIR_RES $DIR_TMP $DIR_IMG";
+REQ_APPLICATIONS="pdflatex aspell perl epstopdf gnuplot Rscript pdfopt";
+FILE_ABSTRACT="$DIR_SRC/abstract.tex";
+FILE_INTRO="$DIR_SRC/introduction.tex";
+FILE_CONFIG="$DIR_RES/config.tex";
+FILE_MAIN="document.tex";
+FILE_BIB="relatedwork.bib";
+

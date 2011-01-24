@@ -1,0 +1,13 @@
+#TeXlipse project settings
+#Wed Jul 02 14:43:54 CEST 2008
+builderNum=2
+outputDir=
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=temp
+mainTexFile=willner-dissertation.tex
+outputFile=willner-dissertation.pdf
+langSpell=de
+markDer=true
+srcDir=

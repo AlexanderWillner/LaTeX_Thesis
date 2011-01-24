@@ -1,0 +1,70 @@
+#===============================================================================
+#/**
+# * Test image
+# * @author  : Alexander willner (willner@cs.uni-bonn.de)
+# * @version : $Id: example3.gv 58 2010-03-29 01:02:41Z willner $
+# */
+#===============================================================================
+
+digraph G {
+# See http://www.graphviz.org/doc/info/attrs.html#d:margin
+margin = "0,0";
+# See http://www.graphviz.org/doc/info/attrs.html#d:pad
+pad="0.03,0.03"
+# Can be: circo dot fdp neato nop nop1 nop2 osage patchwork sfdp twopi
+#layout = "sfdp";
+# See: http://www.graphviz.org/doc/info/attrs.html#k:rankdir
+#rankdir = "BT";
+# See: http://www.graphviz.org/doc/info/attrs.html#k:shape
+node [shape=box, style="rounded"];
+
+HNA_1[style="rounded, filled", label=""]
+HNA_2[style="rounded, filled", label=""]
+HNA_3[style="rounded, filled", label=""]
+HNA_4[style="rounded, filled", label=""]
+HNA_5[style="rounded, filled", label=""]
+HNA_6[style="rounded, filled", label=""]
+HNA_7[style="rounded, filled", label=""]
+HNA_8[style="rounded, filled", label=""]
+
+IDB_1[style="rounded", label=""]
+IDB_2[style="rounded", label=""]
+IDB_3[style="rounded", label=""]
+IDB_4[style="rounded", label=""]
+IDB_5[style="rounded", label=""]
+IDB_6[style="rounded", label=""]
+
+IDB_2 -> IDB_1 [dir="both"]
+IDB_2 -> IDB_1 [style="dotted", color="#4e76a4", dir="both"]
+{rank=same; IDB_1 IDB_2}
+
+IDB_4 -> HNA_1 [dir="both"]
+IDB_4 -> HNA_1 [style="dotted", color="#4e76a4", dir="back"]
+IDB_4 -> HNA_2 [style="dotted", color="#4e76a4", dir="back"]
+IDB_4 -> HNA_2 [dir="both"]
+
+IDB_3 -> HNA_5 [dir="both"]
+IDB_3 -> HNA_5 [style="dotted", color="#4e76a4", dir="back"]
+IDB_3 -> HNA_6 [style="dotted", color="#4e76a4", dir="back"]
+IDB_3 -> HNA_6 [dir="both"]
+
+IDB_1 -> IDB_5 [dir="both"]
+IDB_1 -> IDB_5 [style="dotted", color="#4e76a4", dir="back"]
+IDB_1 -> IDB_3 [dir="both"]
+IDB_1 -> IDB_3 [style="dotted", color="#4e76a4", dir="back"]
+
+IDB_2 -> IDB_4 [dir="both"]
+IDB_2 -> IDB_4 [style="dotted", color="#4e76a4", dir="back"]
+IDB_2 -> IDB_6 [dir="both"]
+IDB_2 -> IDB_6 [style="dotted", color="#4e76a4", dir="back"]
+
+IDB_5 -> HNA_7 [dir="both"]
+IDB_5 -> HNA_7 [style="dotted", color="#4e76a4", dir="back"]
+IDB_5 -> HNA_8 [style="dotted", color="#4e76a4", dir="back"]
+IDB_5 -> HNA_8 [dir="both"]
+
+IDB_6 -> HNA_3 [dir="both"]
+IDB_6 -> HNA_3 [style="dotted", color="#4e76a4", dir="back"]
+IDB_6 -> HNA_4 [style="dotted", color="#4e76a4", dir="back"]
+IDB_6 -> HNA_4 [dir="both"]
+}

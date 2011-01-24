@@ -1,0 +1,189 @@
+% document configuration -------------------------------------------------------
+\documentclass[
+        pagesize,               % put paper size information into document
+        a4paper,                % use a5paper for ISO A5; use a4paper for ISO A4
+        pdftex,                 % PDF output
+        fontsize=12pt,          % font size
+        headsepline,            % use headinclude also! (see M. Kohm)
+        footsepline,            % use footinclude also! (see M. Kohm)
+        headinclude,            % count head to text body (not to margin)
+        footinclude,            % count foot to text body (not to margin)
+        BCOR8mm,                % set extra margin for book fixation
+        headsepline,            % line on the top
+        openany,                % allows chapters to occur on left hand pages
+        titlepage,              % show a title page
+        draft=false,            % show under-/overfull boxes
+        DIV=calc                % calculate a nice type area
+        %ngerman,                % German language support
+        %numbers=noendperiod     % no number at the end (German DUDEN)
+]{scrbook}
+% ------------------------------------------------------------------------------
+
+
+% basic config -----------------------------------------------------------------
+\usepackage{CJKutf8}                          % Japanese language support
+%\usepackage[ngerman]{babel}                  % German language support
+%\usepackage{bibgerm}                         % German bibliography support
+%\usepackage{bibtopic}                        % Bibliography: use more than one
+\usepackage[numbers,square,longnamesfirst]{natbib}  % Bibliography: style
+%\usepackage{scrhack}                         % Fix some scrbook issues
+\usepackage[printonlyused,withpage]{acronym}  % Acronyms
+\usepackage[Sonny]{fncychap}                  % Nice chapter header
+\usepackage[bf]{caption}[2008/08/24]          % Bold caption (is nicer)
+\input{resources/config/default}              % Default config
+%\usepackage[babel,german=quotes]{csquotes}   % German language support
+\usepackage{listings}                         % Nicer listings
+\usepackage{ltxtable}                         % Long complex tables
+\usepackage{wallpaper}                        % To show an icon on the first page
+\usepackage{minitoc}                          % ToC for chapters
+\dominitoc[n]                                 % No caption for mini ToCs
+\addtokomafont{sectioning}{\rmfamily}         % Serifs in headings
+\ChNameVar{\Large\rm}                         % Fancy chapter with serifs
+\ChTitleVar{\Large\rm}                        % Fancy chapter with serifs
+\renewcommand*{\acsfont}[1]{{\rmfamily{#1}}}
+%\renewcommand{\mtctitle}{Contents}
+\renewcommand{\lstlistlistingname}{List of Algorithms}
+\renewcommand{\lstlistingname}{Algorithm}
+\input{glyphtounicode}
+\pdfgentounicode=1
+% ------------------------------------------------------------------------------
+
+
+% more config ------------------------------------------------------------------
+\usepackage[switch*,modulo]{lineno}  % Show line numbers
+\usepackage{lmodern}                 % Nicer fonts (for all)
+\usepackage{mathptmx}                % Nicer fonts (for all) - times
+%\usepackage[osf,sc]{mathpazo}       % Nicer fonts (for all) - palatino
+%\usepackage[scaled=.95]{helvet}     % Nicer fonts (for captions) - palatino
+%\usepackage{courier}                % Nicer fonts (for text) - palatino
+%\usepackage{mathptmx}               % Nicer fonts (for math)
+%\usepackage{tocbibind}              % Show Table Of Content (TOC) in the TOC (do not use!)
+\usepackage[clearempty]{titlesec}    % Suppress header and footer for empty pages
+\usepackage{lipsum}                  % To add some dummy text
+\usepackage{makeidx}                 % Make an index
+\makeindex                           % Make an index
+\definecolor{LinkColor}{rgb}{0,0,0}  % Link color
+\definecolor{MarginColor}{rgb}%
+{.29,.03,.06}                        % Link color
+\newlength\cornerXoffset
+\newlength\cornerYoffset
+\setlength\cornerXoffset{0cm}        % X
+\setlength\cornerYoffset{2cm}        % Y
+\newcommand\ThisLROffsetCornerWallPaper[2]{%
+  \AddToShipoutPicture*{%
+    \AtPageLowerLeft{%
+      \parbox[b]{\paperwidth-\cornerXoffset}{%
+        \hfill \includegraphics[width=#1\paperwidth,height=#1\paperheight,%
+        keepaspectratio]{#2}%
+        \vspace{\cornerYoffset}\null
+      }
+    }
+  }
+}
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+% ------------------------------------------------------------------------------
+
+
+% fix for old tex installations ------------------------------------------------
+\makeatletter
+\@ifundefined{float@listhead}{}{%
+    \renewcommand*{\lstlistoflistings}{%
+        \begingroup
+    	    \if@twocolumn
+                \@restonecoltrue\onecolumn
+            \else
+                \@restonecolfalse
+            \fi
+            \float@listhead{\lstlistlistingname}%
+            \setlength{\parskip}{\z@}%
+            \setlength{\parindent}{\z@}%
+            \setlength{\parfillskip}{\z@ \@plus 1fil}%
+            \@starttoc{lol}%
+            \if@restonecol\twocolumn\fi
+        \endgroup
+    }%
+}
+\makeatother
+% ------------------------------------------------------------------------------
+
+
+% hyphenations -----------------------------------------------------------------
+\hyphenation{Ge-samt-ozon %
+Ma-the-ma-tisch %
+Na-tur-wis-sen-schaft-lich-en}
+% ------------------------------------------------------------------------------
+
+
+% meta data --------------------------------------------------------------------
+\newcommand{\metaType}{Template}
+\newcommand{\metaWhy}{Submitted as partial fulfillment of the requirements of the degree of Master of Templates}
+\newcommand{\metaArticle}{the}
+\newcommand{\metaSubmitted}{submitted by}
+\newcommand{\metaDate}{30.~September~2012}
+\newcommand{\metaDateExam}{30.~September~2012}
+\newcommand{\metaNumber}{2012-09}
+\newcommand{\metaTitle}{\LaTeX~Thesis Template}
+\newcommand{\metaTitleShort}{Thesis Template}
+\newcommand{\metaDegree}{M.Tmpl.}
+\newcommand{\metaBirthplace}{Birthplace}
+\newcommand{\metaAuthor}{Firstname Lastname}
+\newcommand{\metaAuthorMail}{lastname@example.org}
+\newcommand{\metaKeywords}{Latex, Thesis, Template}
+\newcommand{\metaSubject}{Template to write a thesis}
+\newcommand{\metaUniversity}{university name}
+\newcommand{\metaFaculty}{faculty name}
+\newcommand{\metaDepartment}{department name}
+\newcommand{\metaCitycode}{12345}
+\newcommand{\metaCity}{City}
+\newcommand{\metaCountry}{Country}
+\newcommand{\metaURL}{http://github.com/AlexanderWillner/ThesisTemplate}
+\newcommand{\metaFirstReviewerName}{Prof. Dr. Firstname Lastname}
+\newcommand{\metaFirstReviewerUniversity}{First University}
+\newcommand{\metaSecondReviewerName}{Prof. Dr. John Doe}
+\newcommand{\metaSecondReviewerUniversity}{Second University}
+\newcommand{\metaAuthorShort}{Firstname Lastname}
+\newcommand{\metaConference}{Conference}
+\newcommand{\metaConferenceArea}{Area}
+\newcommand{\metaDedication}{Dedicated to...\\[1cm]%
+Thank you for...}
+% ------------------------------------------------------------------------------
+
+
+% page layout ------------------------------------------------------------------
+\usepackage{geometry}
+\geometry{a4paper, bottom=4cm}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.9}
+\renewcommand{\textfraction}{0.07}         % allow minimal text w. figs
+\renewcommand{\floatpagefraction}{0.7}     % require fuller float pages
+\renewcommand{\dblfloatpagefraction}{0.7}  % require fuller float pages
+\renewcommand{\dbltopfraction}{0.9}        % fit big float above 2-col. text
+\renewcommand{\textfloatsep}{5mm}
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}                % 2 may work better
+\setcounter{dbltopnumber}{2}               % for 2-column pages
+
+%\ChNameVar{\vspace*{-1in}\Large\sf}
+%\ChNumVar{\vspace*{-1in}\Huge}
+%\ChTitleVar{\vspace*{-1in}\Large\sf}
+%\ChRuleWidth{0.5pt}
+%\ChNameUpperCase
+
+%\makeatletter
+%\def\@makeschapterhead#1{%
+%  \vspace*{0\p@}
+%  {\parindent \z@ \raggedright
+%    \normalfont
+%    \interlinepenalty\@M
+%    \DOTIS{#1}
+%    \vskip 0\p@
+%  }}
+%\makeatother
+% ------------------------------------------------------------------------------
+
+
+% pdf meta data ----------------------------------------------------------------
+\input{resources/config/pdfmetadata}
+% ------------------------------------------------------------------------------

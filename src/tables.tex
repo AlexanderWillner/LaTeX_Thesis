@@ -1,0 +1,34 @@
+%/**
+% * LaTeX thesis template (tables)
+% * @author  : Alexander willner (willner@cs.uni-bonn.de)
+% */
+
+% Reduce the depath later
+\setcounter{tocdepth}{5}
+\tableofcontents
+%\mtcaddchapter\addcontentsline{toc}{chapter}{Table of Contents}
+\cleardoublepage
+
+\listoffigures
+\mtcaddchapter\addcontentsline{toc}{chapter}{\listfigurename}
+\cleardoublepage
+
+\listoftables
+\mtcaddchapter\addcontentsline{toc}{chapter}{\listtablename}
+\cleardoublepage
+
+\lstlistoflistings
+\mtcaddchapter\addcontentsline{toc}{chapter}{List of Algorithms}
+\cleardoublepage
+
+\chapter*{List of Abbreviations and Symbols}
+\mtcaddchapter\addcontentsline{toc}{chapter}{List of Abbreviations and Symbols}
+
+\begin{acronym}[LLOONNGG]
+\acro{SONA}{SO Neat Acronym}
+\acro{SLA}{So Light Acronym}
+
+\vspace{10 mm}
+\acro{H2O}[$\mathrm{H_2O}$]{Water}
+\end{acronym}
+\cleardoublepage

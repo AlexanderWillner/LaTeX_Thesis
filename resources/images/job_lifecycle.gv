@@ -1,0 +1,31 @@
+#===============================================================================
+#/**
+# * Job life cycle.
+# * @author  : Alexander willner (willner@cs.uni-bonn.de)
+# * @version : $Id: job_lifecycle.gv 53 2010-03-17 08:38:05Z willner $
+# */
+#===============================================================================
+
+digraph G {
+# See http://www.graphviz.org/doc/info/attrs.html#d:margin
+margin = "0,0";
+# See http://www.graphviz.org/doc/info/attrs.html#d:pad
+pad="0.03,0.03"
+# Can be: circo dot fdp neato nop nop1 nop2 osage patchwork sfdp twopi
+layout = "sfdp";
+# See: http://www.graphviz.org/doc/info/attrs.html#k:rankdir
+#rankdir = "BT";
+# See: http://www.graphviz.org/doc/info/attrs.html#k:shape
+node [shape=circle, style="rounded"];
+
+START[label="S1", style = invisible]
+COMPUTE[label="S2"]
+#TODO: doppelt einkreisen
+END[label="S3", shape = doublecircle]
+ERR[label="S4", shape = doublecircle]
+
+START -> COMPUTE [label = "1"]
+COMPUTE -> COMPUTE [label = "2"]
+COMPUTE -> ERR [label = "3"]
+COMPUTE -> END [label = "4"]
+}

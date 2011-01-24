@@ -1,0 +1,74 @@
+%/**
+% * LaTeX thesis template (main file)
+% * @author  : Alexander willner (willner@cs.uni-bonn.de)
+% */
+
+% /* include config ------------------------------------------------------ */
+\input{template.config.tex}
+%\excludecomment{finalComments}
+\def\showDedication{1} % 1=show it, 0=hide it
+% /* --------------------------------------------------------------------- */
+
+
+% /* begin paper --------------------------------------------------------- */
+\begin{document}
+    \frontmatter
+    \pagestyle{empty}
+    \pagenumbering{alph}
+    \include{src/title}
+    \cleardoublepage
+    \include{src/deposition}
+    \ifnum\showDedication > 0
+    \cleardoublepage
+      \include{src/dedication}
+    \fi
+    \cleardoublepage
+
+    \pagestyle{headings}
+    \pagenumbering{roman}
+    \setcounter{page}{1}
+    \include{src/abstract}
+    \ifnum\showDedication > 0
+    \include{src/acknowledgment}
+    \fi
+    \cleardoublepage
+
+    \phantomsection
+    \include{src/tables}
+    \cleardoublepage
+
+    \mainmatter
+    \pagenumbering{arabic}
+    \setcounter{page}{1}
+    \linenumbers
+    \include{src/introduction}
+    \include{src/relatedwork}
+    \include{src/assumptions}
+    \include{src/analysis}
+    \include{src/evaluation}
+    \include{src/summary}
+    \nolinenumbers
+    \cleardoublepage
+
+    \appendix
+    \pagenumbering{Roman}
+    \setcounter{page}{1}
+    \include{src/appendix}
+    \include{src/unsorted}
+
+    \cleardoublepage
+    %\bibliographystyle{abbrv}
+    %% To list uncited references (disable the line above):
+    \bibliographystyle{unsrt}
+    \cite{uncited}
+    \nocite{*}
+
+    \bibliography{template,build}
+    \mtcaddchapter\addcontentsline{toc}{chapter}{Bibliography}
+
+    \backmatter
+    \cleardoublepage
+    \renewcommand{\indexname}{Index}
+    \printindex
+\end{document}
+% /* ----------------------------------------------------------- end paper */
