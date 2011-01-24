@@ -26,8 +26,7 @@ Main Features
 * Language support: UTF8 encoding, support for CJK and German
 * Integration: buildbot test script, TeXlipse project file, graphviz, gnuplot, R
 * Build file: clean, compile, image generation, validation
-* Validation: orthography (incl. project dictionary), hyphens, commas,
-              references, todos, best practices, l2tabu, latex/bibtex warnings
+* Validation: orthography (incl. project dictionary), hyphens, commas, references, todos, best practices, l2tabu, latex/bibtex warnings
 * Title: left aligned and centered layout, include a logo
 * Affidavit, Dedication, Abstract (multi lingual), Acknowledgements
 * Tables: ToC, Figures, Tables, Algorithms, Abbreviations, Symbols
