@@ -39,3 +39,7 @@ Main Features
 * Bibliography: multiple files, link to the source page, show unreferenced items
 * Index: includes sub items
 * Other: side notes, line numbering
+
+Ticket system
+-------------
+Have a look at http://githubthesis.lighthouseapp.com/tickets and create error reports and feature requests. Also feel free to fork and push enhancements.
