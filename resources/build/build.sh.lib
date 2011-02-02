@@ -353,9 +353,9 @@ function doCleanup() {
     echo -n "Cleaning up...";
 	rm -rf "$_dir_tmp" 2> /dev/null;
     if [ "$isNotGnu" == "1" ]; then
-      find . -regex ".*\.\(bak\|aux\|bbl\|blg\|idx\|out\|new\|lot\|lof\|toc\|log\|ilg\|gls\|glo\|ind\|slg\|syg\|lol\|syi\|maf\|mtc.*\)$" -exec rm {} \;
+      find . -name .git -regex ".*\.\(bak\|aux\|bbl\|blg\|idx\|out\|new\|lot\|lof\|toc\|log\|ilg\|gls\|glo\|ind\|slg\|syg\|lol\|syi\|maf\|mtc.*\)$" -exec rm {} \;
     else
-      find -E . -regex ".*\.(bak|aux|bbl|blg|idx|out|new|lot|lof|toc|log|ilg|ind|gls|glo|slg|syg|syi|lol|maf|mtc.*)$" -exec rm {} \;
+      find -E . -name .git -regex ".*\.(bak|aux|bbl|blg|idx|out|new|lot|lof|toc|log|ilg|ind|gls|glo|slg|syg|syi|lol|maf|mtc.*)$" -exec rm {} \;
     fi
     echo "done";
 }
