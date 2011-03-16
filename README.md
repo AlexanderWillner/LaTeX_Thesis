@@ -14,11 +14,11 @@ are very common while writing a thesis in LaTeX. This is why several
 instructions and even more tips are available in the Internet about
 writing Theses using LaTeX.
 
-Altought one can find many minimal examples and multiple small templates, there
-is no sophisticated community maintained template available that demonstrates
-all useful features. This project aims to fill this gap by providing a complex
-but stil easy to understand template. It should contain all neccessary and nice
-to have features someone might need writing a thesis.
+Although one can find many minimal examples and multiple small templates, there
+is no sophisticated community maintained template (i.e. everyone can collaborate)
+available that demonstrates all useful features. This project aims to fill this gap by
+providing a complex but stil easy to understand template. It should contain all
+necessary and nice to have features someone might need writing a thesis.
 
 So please checkout the template, test it, spread the word, and contribute.
 
