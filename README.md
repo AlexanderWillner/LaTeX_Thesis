@@ -40,6 +40,14 @@ Main Features
 * Index: includes sub items
 * Other: side notes, line numbering
 
+Getting Started
+---------------
+
+* git clone --recursive git://github.com/Thesis/Template.git
+* cd Template
+* make images
+* make build
+
 Ticket system
 -------------
 Have a look at http://githubthesis.lighthouseapp.com/tickets and create error reports and feature requests. Also feel free to fork and push enhancements.
