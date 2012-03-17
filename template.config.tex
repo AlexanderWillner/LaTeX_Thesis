@@ -19,21 +19,23 @@
 ]{scrbook}
 % ------------------------------------------------------------------------------
 
-
-% basic config -----------------------------------------------------------------
-\usepackage{CJKutf8}                          % Japanese language support
+% lang config ------------------------------------------------------------------
+\usepackage{CJKutf8}                         % Japanese language support
 %\usepackage[ngerman]{babel}                  % German language support
 %\usepackage{bibgerm}                         % German bibliography support
-%\usepackage{bibtopic}                        % Bibliography: use more than one
-%\usepackage{apacite}                         % Load this before natbib if needed
+%\usepackage[babel,german=quotes]{csquotes}   % German language support
+% lang config ------------------------------------------------------------------
+
+% basic config -----------------------------------------------------------------
+\input{lib/resources/config/default}          % Default config
 \usepackage[numbers,square,longnamesfirst]{natbib}  % Bibliography: style
-%\usepackage{scrhack}                         % Fix some scrbook issues
+\definecolor{LinkColor}{rgb}{0,0,0}           % Link color
+\definecolor{MarginColor}{rgb}{.29,.03,.06}   % Link color
+% basic config -----------------------------------------------------------------
+
+% local config -----------------------------------------------------------------
 \usepackage[printonlyused,withpage]{acronym}  % Acronyms
 \usepackage[Sonny]{fncychap}                  % Nice chapter header
-\input{lib/resources/config/default}          % Default config
-%\usepackage[babel,german=quotes]{csquotes}   % German language support
-\usepackage{listings}                         % Nicer listings
-\usepackage{ltxtable}                         % Long complex tables
 \usepackage{wallpaper}                        % To show an icon on the first page
 \usepackage{minitoc}                          % ToC for chapters
 \dominitoc[n]                                 % No caption for mini ToCs
@@ -41,30 +43,12 @@
 \ChNameVar{\Large\rm}                         % Fancy chapter with serifs
 \ChTitleVar{\Large\rm}                        % Fancy chapter with serifs
 \renewcommand*{\acsfont}[1]{{\rmfamily{#1}}}
-%\renewcommand{\mtctitle}{Contents}
 \renewcommand{\lstlistlistingname}{List of Algorithms}
 \renewcommand{\lstlistingname}{Algorithm}
-\input{glyphtounicode}
-\pdfgentounicode=1
-% ------------------------------------------------------------------------------
-
-
-% more config ------------------------------------------------------------------
-\usepackage[switch*,modulo]{lineno}  % Show line numbers
-\usepackage{lmodern}                 % Nicer fonts (for all)
 \usepackage{mathptmx}                % Nicer fonts (for all) - times
-%\usepackage[osf,sc]{mathpazo}       % Nicer fonts (for all) - palatino
-%\usepackage[scaled=.95]{helvet}     % Nicer fonts (for captions) - palatino
-%\usepackage{courier}                % Nicer fonts (for text) - palatino
-%\usepackage{mathptmx}               % Nicer fonts (for math)
-%\usepackage{tocbibind}              % Show Table Of Content (TOC) in the TOC (do not use!)
 \usepackage[clearempty]{titlesec}    % Suppress header and footer for empty pages
-\usepackage{lipsum}                  % To add some dummy text
 \usepackage{makeidx}                 % Make an index
 \makeindex                           % Make an index
-\definecolor{LinkColor}{rgb}{0,0,0}  % Link color
-\definecolor{MarginColor}{rgb}%
-{.29,.03,.06}                        % Link color
 \newlength\cornerXoffset
 \newlength\cornerYoffset
 \setlength\cornerXoffset{0cm}        % X
