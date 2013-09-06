@@ -4,7 +4,8 @@
 % */
 
 % /* include config ------------------------------------------------------ */
-\input{thesis_template.config.tex}
+\newcommand{\metaFilename}{thesis_template}
+\input{\metaFilename.config.tex}
 %\excludecomment{finalComments}
 \def\showDedication{1} % 1=show it, 0=hide it
 % /* --------------------------------------------------------------------- */
@@ -63,7 +64,7 @@
     \cite{uncited}
     \nocite{*}
 
-    \bibliography{thesis_template,build}
+    \bibliography{\metaFilename,build}
     \mtcaddchapter\addcontentsline{toc}{chapter}{Bibliography}
 
     \backmatter
