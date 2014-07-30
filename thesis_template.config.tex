@@ -40,13 +40,13 @@
 \usepackage{minitoc}                          % ToC for chapters
 \dominitoc[n]                                 % No caption for mini ToCs
 \addtokomafont{sectioning}{\rmfamily}         % Serifs in headings
-\ChNameVar{\Large\rm}                         % Fancy chapter with serifs
-\ChTitleVar{\Large\rm}                        % Fancy chapter with serifs
+\ChNameVar{\Large\rmfamily}                   % Fancy chapter with serifs
+\ChTitleVar{\Large\rmfamily}                  % Fancy chapter with serifs
 \renewcommand*{\acsfont}[1]{{\rmfamily{#1}}}
 \renewcommand{\lstlistlistingname}{List of Algorithms}
 \renewcommand{\lstlistingname}{Algorithm}
 \usepackage{mathptmx}                % Nicer fonts (for all) - times
-\usepackage[clearempty]{titlesec}    % Suppress header and footer for empty pages
+%\usepackage[clearempty]{titlesec}    % Suppress header and footer for empty pages
 \usepackage{makeidx}                 % Make an index
 \makeindex                           % Make an index
 \newlength\cornerXoffset
