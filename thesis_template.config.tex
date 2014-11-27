@@ -27,13 +27,17 @@
 % lang config ------------------------------------------------------------------
 
 % basic config -----------------------------------------------------------------
+\usepackage{tocloft}                          % Tweaks for large ToCs
+\cftsetpnumwidth{2em}
+
 \input{lib/resources/config/default}          % Default config
-\usepackage[numbers,square,longnamesfirst]{natbib}  % Bibliography: style
-\definecolor{LinkColor}{rgb}{0,0,0}           % Link color
-\definecolor{MarginColor}{rgb}{.29,.03,.06}   % Link color
 % basic config -----------------------------------------------------------------
 
 % local config -----------------------------------------------------------------
+\usepackage{scrhack}                          % Fix some scrbook issues
+\usepackage[numbers,square,longnamesfirst]{natbib}  % Bibliography: style
+\definecolor{LinkColor}{rgb}{0,0,0}           % Link color
+\definecolor{MarginColor}{rgb}{.29,.03,.06}   % Link color
 \usepackage[printonlyused,withpage]{acronym}  % Acronyms
 \usepackage[Sonny]{fncychap}                  % Nice chapter header
 \usepackage{wallpaper}                        % To show an icon on the first page
@@ -64,31 +68,13 @@
     }
   }
 }
+
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{4}
 % ------------------------------------------------------------------------------
 
 
 % fix for old tex installations ------------------------------------------------
-\makeatletter
-\@ifundefined{float@listhead}{}{%
-    \renewcommand*{\lstlistoflistings}{%
-        \begingroup
-    	    \if@twocolumn
-                \@restonecoltrue\onecolumn
-            \else
-                \@restonecolfalse
-            \fi
-            \float@listhead{\lstlistlistingname}%
-            \setlength{\parskip}{\z@}%
-            \setlength{\parindent}{\z@}%
-            \setlength{\parfillskip}{\z@ \@plus 1fil}%
-            \@starttoc{lol}%
-            \if@restonecol\twocolumn\fi
-        \endgroup
-    }%
-}
-\makeatother
 % ------------------------------------------------------------------------------
 
 
@@ -125,6 +111,46 @@
 %\makeatother
 % ------------------------------------------------------------------------------
 
+% hyperlinks (almost last package) --------------------------------------------
+\usepackage[pdftex,                   % Hyperlinks in PDFs
+raiselinks=true,			          % calculate real height of the link
+breaklinks,                           % break links
+%backref=page,                         % backlinks in bibliography (section, slide, page, none)
+%pagebackref=true,                     % backlinks in bibliography
+hyperindex=true,                      % backlinkex index
+linktocpage=true,                     % ToC links pages
+bookmarks=true,                       % Bookmarks for PDF viewers
+bookmarksopen=true,                   % Open bookmarks
+bookmarksopenlevel=2,                 % How many levels to open
+bookmarksnumbered=true,               % Numbers in the bookmarks
+bookmarkstype=toc,                    % Type of bookmark
+plainpages=false,                     % Anchors even on plain pages?
+pageanchor=true,                      % Pages are linkable
+pdfstartview=FitH,                    % Open document with Fit Width
+pdfpagelabels=true,                   % set PDF page labels
+pdfpagemode=UseOutlines,              % Show bookmarks in viewer
+colorlinks,                           % Show colored links
+linkcolor=LinkColor,                  % Link color
+urlcolor=LinkColor,                   % URL color
+anchorcolor=LinkColor,                % Anchor color
+citecolor=LinkColor,                  % Cite color
+menucolor=LinkColor,                  % Menu color
+hypertexnames=true                    % Whatever ;)
+]{hyperref}                           % Use hyperlinks
+%\renewcommand*{\backref}[1]{[cited at page #1]} % Show formatted backlinks
+\usepackage{bookmark}                         % Manually add PDF bookmarks
+% ------------------------------------------------------------------------------
+
+% glossary (last package) ----------------------------------------------------
+\usepackage[xindy,nonumberlist,toc]{glossaries}
+\input{\metaFilename.glos.tex}
+\renewcommand*{\glossaryname}{Glossary}
+\setglossarystyle{altlist}
+\renewcommand*{\glsgroupskip}{}
+%fixme: the glossary moves the minitocs to the wrong chapters
+\renewcommand*{\gls}[1]{{#1}}
+%\makeglossaries
+% ------------------------------------------------------------------------------
 
 % meta data --------------------------------------------------------------------
 \input{\metaFilename.meta}
