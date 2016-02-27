@@ -40,24 +40,21 @@
 \end{figure}
 
 \begin{figure}
-    \centering
-    \subfloat[example2]{
-        \label{fig:example2}
-        \includegraphics[width=.4\textwidth]{resources/images/example2.pdf}
-    }
-    \subfloat[example3]{
-        \label{fig:example3}
-        \includegraphics[width=.4\textwidth]{resources/images/example3.pdf}
-    }
-    \caption{Example images.}
-    \label{fig:exammple2_3}
+    \begin{subfigure}[b]{.5\textwidth}
+      \centering
+      \includegraphics[width=.95\textwidth,frame]{resources/images/example2}
+      \caption{example2}\label{fig:example2}
+    \end{subfigure}~\begin{subfigure}[b]{.5\textwidth}
+      \centering
+      \includegraphics[width=.95\textwidth,frame]{resources/images/example3}
+      \caption{example3}\label{fig:example3}
+    \end{subfigure}
+    \caption{Example images}\label{fig:exammple2_3}
 \end{figure}
 
-
 \begin{center}
-    \begin{longtable}{ll}
-        \label{tbl:exampletable}\\
-        \captionabove{Example table}\\
+  \begin{tabularx}{\textwidth}{ll}
+      \caption{Example table}\label{tbl:exampletable}\\
         \toprule\textbf{Name} & \textbf{Age}\\\midrule
         \endfirsthead
         \toprule\textbf{Name} & \textbf{Age}\\\midrule
@@ -70,7 +67,7 @@
        Hans           & 80             \\
        Heinrich       & 77             \\
        Herbert        & 84             \\
-    \end{longtable}
+    \end{tabularx}
 \end{center}
 
 \lstset{language=Java, caption=Example Code., %

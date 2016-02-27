@@ -4,8 +4,9 @@
 % */
 
 % /* include config ------------------------------------------------------ */
-\newcommand{\metaFilename}{thesis_template}
-\input{\metaFilename.config.tex}
+\RequirePackage{pdf14}                 % PDF/A2-b compatibility
+\input{thesis_template.config.tex}
+\input{thesis_template.acro.tex}                % inlcude acronyms
 %\excludecomment{finalComments}
 \def\showDedication{1} % 1=show it, 0=hide it
 % /* --------------------------------------------------------------------- */
@@ -25,7 +26,7 @@
     \fi
     \cleardoublepage
 
-    \pagestyle{headings}
+    %\pagestyle{headings}
     \pagenumbering{roman}
     \setcounter{page}{1}
     \include{src/abstract}
@@ -60,12 +61,96 @@
     \cleardoublepage
     %\bibliographystyle{abbrv}
     %% To list uncited references (disable the line above):
-    \bibliographystyle{unsrt}
-    \cite{uncited}
-    \nocite{*}
+    %\bibliographystyle{unsrt}
 
-    \bibliography{\metaFilename,build}
+    %\bibliography{thesis_template,build}
+\chapter*{Bibliography}
     \mtcaddchapter\addcontentsline{toc}{chapter}{Bibliography}
+\section*{List of Author's Publications Covered in this Thesis}
+
+%\subsection*{Covered in this Thesis}
+\nocite{*}
+\printbibliography[keyword=own,heading=empty,category=cited,prefixnumbers={a}]
+
+%\subsection*{Other Publications}
+%\printbibliography[keyword=own,heading=empty,notcategory=cited,prefixnumbers={o}]
+
+\section*{References to Scientific Publications}
+\defbibfilter{papers}{
+  type=article
+  or type=inproceedings
+  or type=proceedings
+  or type=journal
+  or type=phdthesis
+  or type=incollection
+  or type=book
+  or keyword=thesis
+  and not keyword=W3C
+  and not keyword=RFC
+  and not keyword=ITU
+  and not keyword=IEEE
+  and not keyword=ANSI
+  and not keyword=OGF
+  and not keyword=web
+  and not keyword=presentation
+  and not keyword=workingpaper
+}
+\printbibliography[filter=papers,heading=empty,category=cited,prefixnumbers={p},notkeyword=own]
+
+
+\section*{Technical References}
+
+%\subsection*{Normative References (Standards)}
+\defbibfilter{standards}{
+  keyword=W3C
+  or keyword=RFC
+  or keyword=TMF
+  or keyword=ITU
+  or keyword=IEEE
+  or keyword=ANSI
+  or keyword=OGF
+  or keyword=ETSI
+  or keyword=OneM2M
+  or keyword=IETF
+  or keyword=OMA
+  or keyword=TMG
+  or keyword=NIST
+  or keyword=SNIA
+  or keyword=OMG
+  or keyword=DMTF
+  or keyword=OASIS
+  or type=techreport
+  or keyword=deliverable
+  or keyword=techreport
+  or keyword=whitepaper
+  and not keyword=web
+  and not keyword=presentation
+  and not keyword=workingpaper
+}
+\printbibliography[filter=standards,heading=empty,category=cited,prefixnumbers={t},notkeyword=own]
+%\subsection*{Informative References (Technical Reports)}
+%\defbibfilter{reports}{
+%  type=techreport
+%  or keyword=deliverable
+%  or keyword=techreport
+%  or keyword=whitepaper
+%}
+%\printbibliography[filter=reports,heading=empty,category=cited,prefixnumbers={t},notkeyword=own]
+
+
+\subsection*{Miscellaneous References}
+\defbibfilter{misc}{
+  keyword=web
+  or keyword=presentation
+  or keyword=workingpaper
+}
+\printbibliography[filter=misc,heading=empty,category=cited,prefixnumbers={m},notkeyword=own]
+
+
+\section*{Not referenced (will be empty)}
+\todo{this section should be empty at the end}
+\nocite{*}
+\printbibliography[heading=empty,notcategory=cited,prefixnumbers={x},notkeyword=own]
 
     \backmatter
     \cleardoublepage
