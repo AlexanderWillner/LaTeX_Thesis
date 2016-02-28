@@ -1,4 +1,4 @@
 tmp
 thesis_template.pdf
 *.log
-
+.DS_Store

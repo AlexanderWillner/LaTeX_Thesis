@@ -1,11 +1,3 @@
-#===============================================================================
-#/**
-# * Test image
-# * @author  : Alexander willner (willner@cs.uni-bonn.de)
-# * @version : $Id: example3.gv 58 2010-03-29 01:02:41Z willner $
-# */
-#===============================================================================
-
 digraph G {
 # See http://www.graphviz.org/doc/info/attrs.html#d:margin
 margin = "0,0";

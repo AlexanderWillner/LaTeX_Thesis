@@ -65,7 +65,7 @@
 \usepackage{pdflscape}
 %\usepackage{subfig}
 \usepackage{xmpincl}
-%\includexmp{a-file-with-meta-data-if-you-like}
+%\includexmp{an-xmp-file-if-you-like}
 \usepackage{enumitem}                   % More compact listings
 \usepackage{float}                      % Provides the H float modifier option
 % ------------------------------------------------------------------------------
@@ -259,12 +259,9 @@ hypertexnames=true                    % Whatever ;)
 % glossary (last package) ----------------------------------------------------
 \usepackage[xindy,nonumberlist,toc]{glossaries}
 \input{thesis_template.glos.tex}
-\renewcommand*{\glossaryname}{Glossary}
 \setglossarystyle{altlist}
 \renewcommand*{\glsgroupskip}{}
-%fixme: the glossary moves the minitocs to the wrong chapters
-\renewcommand*{\gls}[1]{{#1}}
-%\makeglossaries
+\makeglossaries%
 % ------------------------------------------------------------------------------
 
 
