@@ -42,6 +42,9 @@ Getting Started
 * git clone --recursive git://github.com/Thesis/Thesis.git
 * cd Thesis
 * make clean full
+* make # to show all options
+
+Next, open [https://github.com/thesis/Paper](https://github.com/thesis/Paper) for further details.
 
 All make targets
 ----------------
