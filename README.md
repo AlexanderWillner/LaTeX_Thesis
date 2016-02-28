@@ -39,8 +39,8 @@ Main Features
 Getting Started
 ---------------
 
-* git clone --recursive git://github.com/Thesis/Template.git
-* cd Template
+* git clone --recursive git://github.com/Thesis/Thesis.git
+* cd Thesis
 * make clean full
 
 All make targets
