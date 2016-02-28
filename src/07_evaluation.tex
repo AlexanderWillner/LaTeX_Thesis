@@ -68,12 +68,12 @@
 \small
 \begin{equation}
   \begin{array}{l}
-    \displaystyle t^{p_d}_{fw}(d) = max_{d}(t_{child_{i}}) \\
+    \displaystyle t^{p_d}_{fw}(d) = \max_{d}(t_{child_{i}}) \\
     \displaystyle t^{p_d}_{db}(d) = \sum_{i=1}^{d} t_{db_{i}} \\
     \displaystyle t^{p_d}_{pc}(n,d) =
     	\begin{cases}
         	t_{pc}(d) + c(n) & \text{if $d = 1$,}\\
-        	t_{pc}(d) + c(n) + max(t_{avail}(d)) & \text{if $d>1$.}\\
+        	t_{pc}(d) + c(n) + \max(t_{avail}(d)) & \text{if $d>1$.}\\
         \end{cases}
   \end{array}\label{eq:var_idb}
 \end{equation}
