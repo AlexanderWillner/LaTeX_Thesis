@@ -92,12 +92,10 @@
 
 % acronyms ---------------------------------------------------------------------
 \usepackage{acro}
-%\renewcommand*{\acsfont}[1]{{\rmfamily{#1}}}
 \DeclareInstance{acro-page-number}{dotfill}{default}{
   punct = true,
   punct-symbol = \linebreak[1]\null\dotfill\nobreak%
 }
-
 \acsetup{
             single=false,
             sort=true,
@@ -112,21 +110,35 @@
 \robustify\url%
 \newif\ifacrousefootnote%
 \newcommand\acfootnote[1]{\ifacrousefootnote\footnote{#1}\fi}
-\ExplSyntaxOn%
-\NewAcroCommand\aclu%
-  {
-    \acro_is_used:nF {#1}
-      { \acrousefootnotetrue\acro_cite: }
-    \acro_long:n {#1}
-  }
-\NewAcroCommand\Aclu%
-  {
-    \acro_if_acronym_used:nF {#1}
-      { \acrousefootnotetrue\acro_cite: }
-    \acro_first_upper:
-    \acro_long:n {#1}
-  }
-\ExplSyntaxOff%
+
+\makeatletter\newif\ifnewacro%
+\@ifpackagelater{acro}{2015/08/15}{% version 2.0 or later
+\setboolean{newacro}{true}
+}{% else hide footnotes and citations
+\setboolean{newacro}{false}
+\typeout{warning: your acro package is too old (<2.0)}
+}%
+\makeatother
+\ifnewacro% show footnotes only once
+    \ExplSyntaxOn%
+    \NewAcroCommand\aclu%
+      {
+        \acro_is_used:nF {#1}
+          { \acrousefootnotetrue\acro_cite: }
+        \acro_long:n {#1}
+      }
+    \NewAcroCommand\Aclu%
+      {
+        \acro_if_acronym_used:nF {#1}
+          { \acrousefootnotetrue\acro_cite: }
+        \acro_first_upper:
+        \acro_long:n {#1}
+      }
+    \ExplSyntaxOff%
+\else
+    \newcommand{\aclu}[1]{\acs{#1}}
+    \newcommand{\Aclu}[1]{\Acs{#1}}
+\fi
 % ------------------------------------------------------------------------------
 
 
