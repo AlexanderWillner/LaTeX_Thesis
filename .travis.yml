@@ -16,6 +16,8 @@ addons:
       - latex-xcolor
       - pgf
       - aspell
+      - aspell-en
+      - ghostscript
       - gnuplot
       - r-base
       - graphviz
@@ -24,7 +26,7 @@ addons:
       - fonts-droid
       - fonts-sil-gentium-basic
 install:
-  - sudo apt-get -y install fonts-sil-gentium fonts-inconsolata fonts-droid fonts-sil-gentium-basic cm-super biber texlive-lang-german lmodern
+  - sudo apt-get -y install fonts-sil-gentium fonts-inconsolata fonts-droid fonts-sil-gentium-basic cm-super biber texlive-lang-german lmodern chktex
   - wget --no-check-certificate http://yar.fruct.org/attachments/download/362/plantuml_7707-1_all.deb
   - sudo dpkg -i plantuml_7707-1_all.deb
 
