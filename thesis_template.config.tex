@@ -78,7 +78,7 @@
             backend=biber,
             defernumbers=true,
             useprefix=true,
-            firstinits=true,
+            giveninits=true,
             %maxcitenames=2,
             maxbibnames=99, minbibnames=99,
             %doi=false,isbn=false,url=false,
@@ -92,7 +92,7 @@
 
 % acronyms ---------------------------------------------------------------------
 \usepackage{acro}
-\DeclareInstance{acro-page-number}{dotfill}{default}{
+\DeclareAcroPageStyle{dotfill}{inline}{
   punct = true,
   punct-symbol = \linebreak[1]\null\dotfill\nobreak%
 }
@@ -100,7 +100,7 @@
             single=false,
             sort=true,
             list-style=longtable,
-            page-ref=dotfill, % or =plain
+            page-style=dotfill, % or =plain
             index, %  migh result in 'pdfTeX warning (dest): name... has been referenced but does not exist, replaced by a fixed one'
             pages=first,
             page-name={},

@@ -23,7 +23,8 @@
 
 \section*{List of Author's Publications Covered in this Thesis}
 \nocite{li2002design}
-\printbibliography[keyword=own,heading=empty,category=cited,prefixnumbers={a}]
+\newrefcontext[labelprefix=a]
+\printbibliography[keyword=own,heading=empty,category=cited]
 
 
 \section*{References to Scientific Publications}
@@ -46,7 +47,8 @@
   and not keyword=presentation
   and not keyword=workingpaper
 }
-\printbibliography[filter=papers,heading=empty,category=cited,prefixnumbers={p},notkeyword=own]
+\newrefcontext[labelprefix=p]
+\printbibliography[filter=papers,heading=empty,category=cited,notkeyword=own]
 
 
 \section*{Technical References}
@@ -77,7 +79,8 @@
   and not keyword=presentation
   and not keyword=workingpaper
 }
-\printbibliography[filter=standards,heading=empty,category=cited,prefixnumbers={t},notkeyword=own]
+\newrefcontext[labelprefix=t]
+\printbibliography[filter=standards,heading=empty,category=cited,notkeyword=own]
 
 
 \section*{Miscellaneous References}
@@ -86,10 +89,12 @@
   or keyword=presentation
   or keyword=workingpaper
 }
-\printbibliography[filter=misc,heading=empty,category=cited,prefixnumbers={m},notkeyword=own]
+\newrefcontext[labelprefix=m]
+\printbibliography[filter=misc,heading=empty,category=cited,notkeyword=own]
 
 
 \section*{Not referenced (will be empty)}
 \todo{this section should be empty at the end}
 \nocite{*}
-\printbibliography[heading=empty,notcategory=cited,prefixnumbers={x},notkeyword=own]
+\newrefcontext[labelprefix=x]
+\printbibliography[heading=empty,notcategory=cited,notkeyword=own]
