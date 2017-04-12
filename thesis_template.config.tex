@@ -121,9 +121,22 @@
 \makeatother
 \ifnewacro% show footnotes only once
     \ExplSyntaxOn%
+    \RenewAcroCommand\ac%
+      {
+        \acro_if_acronym_used:nF {#1}
+          { \acrousefootnotetrue\acro_cite: }
+        \acro_use:n {#1}
+      }
+    \RenewAcroCommand\Ac%
+      {
+        \acro_if_acronym_used:nF {#1}
+          { \acrousefootnotetrue\acro_cite: }
+        \acro_first_upper:
+        \acro_use:n {#1}
+      }
     \NewAcroCommand\aclu%
       {
-        \acro_is_used:nF {#1}
+        \acro_if_acronym_used:nF {#1}
           { \acrousefootnotetrue\acro_cite: }
         \acro_long:n {#1}
       }
