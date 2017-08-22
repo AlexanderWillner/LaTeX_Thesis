@@ -20,7 +20,7 @@ available that demonstrates all useful features. This project aims to fill this 
 providing a complex but stil easy to understand template. It should contain all
 necessary and nice to have features someone might need writing a thesis.
 
-So please checkout the template, test it, spread the word, and contribute.
+So please checkout the template (for both, a thesis and a paper), test it, spread the word, and contribute.
 
 Main Features
 -------------
@@ -44,7 +44,7 @@ Getting Started
 * make clean full
 * make # to show all options
 
-Next, open [https://github.com/thesis/Paper](https://github.com/thesis/Paper) for further details.
+Next, open [https://github.com/thesis/Thesis](https://github.com/thesis/Thesis) for further details. Also check out [https://github.com/thesis/Paper](https://github.com/thesis/Paper).
 
 All make targets
 ----------------
