@@ -1,0 +1,67 @@
+\pdfbookmark{Title}{title}
+\begin{titlepage}
+\newgeometry{left=35mm, right=35mm, top=35mm, bottom=35mm}
+
+
+\begin{center}
+\vspace*{2cm}
+\LARGE{\metaTitleLayouted}\\
+\normalsize
+
+\vspace*{2cm}
+\metaSubmitted%
+\\
+\metaAuthor, \metaDegree~\\
+\metaBirthplace%
+\\
+
+\vspace*{2cm}
+\metaFaculty%
+\\
+\metaUniversity%
+\\
+\metaWhy%
+\\
+\vspace*{0,5cm}
+\metaType%
+\\
+-~{\metaTypeShort}~-% chktex: 8
+\\
+\vspace*{0,5cm}
+
+\ifthenelse{\equal{\isFinal}{true}}{
+\metaHowFinal%
+}{
+\metaHowNonFinal%
+}
+\end{center}
+
+\ifthenelse{\equal{\isFinal}{true}}{
+
+\vspace*{2cm}
+\metaBoard:\\
+\vspace*{.3cm}\\
+\begin{tabular}{@{\hspace{1.5em}}ll}
+\metaChair: & \metaChairName~(\metaChairUniversity) \\
+\metaReviewer: & \metaFirstReviewerName~(\metaFirstReviewerUniversity) \\
+\metaReviewer: & \metaSecondReviewerName~(\metaSecondReviewerUniversity)\\
+\metaReviewer: & \metaThirdReviewerName~(\metaThirdReviewerUniversity)\\
+\end{tabular}
+
+\vspace*{1,9cm}
+\metaDateExam%
+\vspace*{0,9cm}
+
+}{
+\vspace*{6cm}
+}
+
+\begin{center}
+\metaNumber\newline
+\end{center}
+
+
+\ThisLROffsetCornerWallPaper{.2}{resources/images/logo}   % logo in the corner
+
+\restoregeometry%
+\end{titlepage}

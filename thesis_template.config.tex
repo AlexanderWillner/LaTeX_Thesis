@@ -1,0 +1,316 @@
+% document configuration -------------------------------------------------------
+\documentclass[
+        %pagesize,              % put paper size information into document
+        a4paper,                % use a5paper for ISO A5; use a4paper for ISO A4
+        pdftex,                 % PDF output
+        %fontsize=12pt,         % font size
+        headsepline,            % use headinclude also! (see M. Kohm)
+        footsepline,            % use footinclude also! (see M. Kohm)
+        headinclude,            % count head to text body (not to margin)
+        footinclude,            % count foot to text body (not to margin)
+        %BCOR8mm,               % set extra margin for book fixation
+        headsepline,            % line on the top
+        titlepage,              % show a title page
+        %draft,                 % show under-/overfull boxes, hide images
+        %demo=true,             % faster compile time
+        %DIV=calc,              % calculate a nice type area
+        %listof=totoc,          % List of Listings to ToC
+        %oneside,               % e.g. same headings for odd and even pages
+        %oneside=true,          % e.g. same headings for odd and even pages
+        %twoside=false,         % e.g. same headings for odd and even pages
+        %open=any,              % allows chapters to occur on left hand pages
+        %openany,               % allows chapters to occur on left hand pages
+        %ngerman,               % German language support
+        %numbers=noendperiod    % no number at the end (German DUDEN)
+%]{scrbook}
+]{book}
+% ------------------------------------------------------------------------------
+
+
+% lang config ------------------------------------------------------------------
+\usepackage[ngerman,english]{babel}          % German language support
+%\usepackage{bibgerm}                        % German bibliography support
+%\usepackage[babel,german=quotes]{csquotes}  % German language support
+% ------------------------------------------------------------------------------
+
+
+% basic packages ---------------------------------------------------------------
+%\usepackage{tocloft}                         % Tweaks for large ToCs
+%\cftsetpnumwidth{2em}                        % Tweaks for large ToCs
+%\usepackage[demo]{graphicx}                  % faster compile time
+\input{lib/resources/config/default}          % Default config
+\usepackage[babel]{csquotes}                  % Biber wants it for babel
+\usepackage[export]{adjustbox}                % For boxes around images
+\usepackage{needspace}                        % used for embedding listings
+%\usepackage{idxlayout}                       % fix index bugs and allow config
+% ------------------------------------------------------------------------------
+
+% basic config -----------------------------------------------------------------
+\definecolor{LinkColor}{rgb}{0.0,0.2,0.5}     % Link color
+\definecolor{MarginColor}{rgb}{0.0,0.2,0.5}   % Margin color
+\definecolor{CaptionColor}{rgb}{0.0,0.2,0.5}  % Caption color
+\definecolor{disabled}{gray}{0.5}             % Disabled text color
+%\addtokomafont{sectioning}{\rmfamily}         % Serifs in headings
+%\addtokomafont{sectioning}{\normalfont\scshape\rmfamily\color{CaptionColor}} % Serifs in headings
+%\addtokomafont{sectioning}{\normalfont\rmfamily\color{CaptionColor}}        % Serifs in headings
+\renewcommand{\lstlistlistingname}{List of Listings}
+\renewcommand{\lstlistingname}{Listing}
+\renewcommand{\contentsname}{Table of Contents}
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{2}
+% basic config -----------------------------------------------------------------
+
+
+% local config -----------------------------------------------------------------
+\usepackage{pdflscape}
+%\usepackage{subfig}
+\usepackage{xmpincl}
+%\includexmp{an-xmp-file-if-you-like}
+\usepackage{enumitem}                   % More compact listings
+\usepackage{float}                      % Provides the H float modifier option
+% ------------------------------------------------------------------------------
+
+
+% bibliography -----------------------------------------------------------------
+\usepackage[
+            style=numeric,%ieee,
+            backref,
+            backend=biber,
+            defernumbers=true,
+            useprefix=true,
+            giveninits=true,
+            %maxcitenames=2,
+            maxbibnames=99, minbibnames=99,
+            %doi=false,isbn=false,url=false,
+            ]{biblatex}
+\addbibresource{thesis_template.bib}
+\defbibheading{empty}{}
+\DeclareBibliographyCategory{cited}
+\AtEveryCitekey{\addtocategory{cited}{\thefield{entrykey}}}
+% ------------------------------------------------------------------------------
+
+
+% acronyms ---------------------------------------------------------------------
+\usepackage{acro}
+\DeclareAcroPageStyle{dotfill}{inline}{
+  punct = true,
+  punct-symbol = \linebreak[1]\null\dotfill\nobreak%
+}
+\acsetup{
+            single=false,
+            sort=true,
+            list-style=longtable,
+            page-style=dotfill, % or =plain
+            index, %  migh result in 'pdfTeX warning (dest): name... has been referenced but does not exist, replaced by a fixed one'
+            pages=first,
+            page-name={},
+            pages-name={},
+}
+\robustify\footnote%
+\robustify\url%
+\newif\ifacrousefootnote%
+\newcommand\acfootnote[1]{\ifacrousefootnote\footnote{#1}\fi}
+
+\makeatletter\newif\ifnewacro%
+\@ifpackagelater{acro}{2015/08/15}{% version 2.0 or later
+\setboolean{newacro}{true}
+}{% else hide footnotes and citations
+\setboolean{newacro}{false}
+\typeout{warning: your acro package is too old (<2.0)}
+}%
+\makeatother
+\ifnewacro% show footnotes only once
+    \ExplSyntaxOn%
+    \RenewAcroCommand\ac%
+      {
+        \acro_if_acronym_used:nF {#1}
+          { \acrousefootnotetrue\acro_cite: }
+        \acro_use:n {#1}
+      }
+    \RenewAcroCommand\Ac%
+      {
+        \acro_if_acronym_used:nF {#1}
+          { \acrousefootnotetrue\acro_cite: }
+        \acro_first_upper:
+        \acro_use:n {#1}
+      }
+    \NewAcroCommand\aclu%
+      {
+        \acro_if_acronym_used:nF {#1}
+          { \acrousefootnotetrue\acro_cite: }
+        \acro_long:n {#1}
+      }
+    \NewAcroCommand\Aclu%
+      {
+        \acro_if_acronym_used:nF {#1}
+          { \acrousefootnotetrue\acro_cite: }
+        \acro_first_upper:
+        \acro_long:n {#1}
+      }
+    \ExplSyntaxOff%
+\else
+    \newcommand{\aclu}[1]{\acs{#1}}
+    \newcommand{\Aclu}[1]{\Acs{#1}}
+\fi
+% ------------------------------------------------------------------------------
+
+
+% chapter layout ---------------------------------------------------------------
+%\usepackage[Sonny]{fncychap}                  % Nice chapter header
+%\ChNameVar{\vspace*{-1in}\Large\rmfamily\vspace*{-2in}}   % Fancy chapter with serifs
+%\ChTitleVar{\color{CaptionColor}\Large\rmfamily\scshape}  % Fancy chapter with serifs
+\usepackage[clearempty]{titlesec}            % Suppress header and footer for empty pages
+\setlength{\headheight}{1.1\baselineskip}
+\titleformat{\chapter}[display]
+  {\scshape\huge\color{CaptionColor}}
+  {\filleft\Large\chaptertitlename~\thechapter}
+  {2.5ex}
+  {\titlerule\vspace{1ex}\filleft}
+  [\vspace{1ex}\titlerule]
+% ------------------------------------------------------------------------------
+
+
+% more config ------------------------------------------------------------------
+% todo: move to 'basic config'
+\usepackage{lmodern}                          % Nicer fonts (for all) - times
+\usepackage{mathptmx}                         % Nicer fonts (for all) - times
+%\usepackage{scrhack}                         % Fix some scrbook issues
+\usepackage{chapterthumb}                     % Fancy thumb index
+\usepackage[chapter]{algorithm}               % Nice pseudo code
+\usepackage{lettrine}                         % Drop characters, if you like
+\renewcommand{\LettrineFontHook}{\color{CaptionColor}}
+\usepackage[nohints]{minitoc}                 % ToC for chapters
+\dominitoc[n]                                 % ToC: no caption
+\renewcommand{\mtcSfont}{\small}              % ToC: small
+\usepackage{makeidx}                          % Make an index
+\makeindex                                    % Make an index
+% ------------------------------------------------------------------------------
+
+
+% spqueezing -------------------------------------------------------------------
+%\usepackage{etoolbox}
+%\makeatletter
+%\patchcmd{\AC@@acro}
+%  {\dotfill\pageref{acro:#1}}
+%  {\nobreak\leaders\hbox{$\mkern -7mu \mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu \mkern 7mu$}%
+%   \hfill\nobreak\makebox[1.3em][r]{\pageref{acro:#1}}}
+%  {}
+%  {}
+%\makeatother
+% ------------------------------------------------------------------------------
+
+
+% wall papger / logo on first page ---------------------------------------------
+ \usepackage{wallpaper}
+ \newlength\cornerXoffset%
+ \newlength\cornerYoffset%
+ \setlength\cornerXoffset{2cm}        % X
+ \setlength\cornerYoffset{2cm}        % Y
+ \newcommand\ThisLROffsetCornerWallPaper[2]{%
+  \AddToShipoutPicture*{%
+    \AtPageLowerLeft{%
+      \parbox[b]{\paperwidth-\cornerXoffset}{%
+        \hfill \includegraphics[width=#1\paperwidth,height=#1\paperheight,%
+        keepaspectratio]{#2}%
+        \vspace{\cornerYoffset}\null%
+      }
+    }
+  }
+ }
+% ------------------------------------------------------------------------------
+
+
+% page layout ------------------------------------------------------------------
+\usepackage[pass,a4paper]{geometry}
+%\usepackage[marginparwidth=.7in, marginparsep=0.2in]{geometry}
+%\geometry{a4paper, bottom=4cm}
+% \renewcommand{\topfraction}{0.9}
+% \renewcommand{\bottomfraction}{0.9}
+% \renewcommand{\textfraction}{0.07}         % allow minimal text w. figs
+% \renewcommand{\floatpagefraction}{0.7}     % require fuller float pages
+% \renewcommand{\dblfloatpagefraction}{0.7}  % require fuller float pages
+% \renewcommand{\dbltopfraction}{0.9}        % fit big float above 2-col. text
+% \renewcommand{\textfloatsep}{5mm}
+% \setcounter{topnumber}{2}
+% \setcounter{bottomnumber}{2}
+% \setcounter{totalnumber}{4}                % 2 may work better
+% \setcounter{dbltopnumber}{2}               % for 2-column pages
+% ------------------------------------------------------------------------------
+
+
+% hyperlinks (almost last package) ---------------------------------------------
+\usepackage{hyperxmp}                 % Semantic meta data (RDF/XMP)
+%\pdfminorversion=4                   % PDF/A compatbility
+%\pdfobjcompresslevel=0               % PDF/A compatbility
+%\pdfcompresslevel=0                  % PDF/A compatbility
+\usepackage[pdftex,                   % Hyperlinks in PDFs
+pdfa=true,                            % PDF/A compatbility (fix hyperlink with ghostscript)
+unicode=true,                         % PDF/A compatbility
+raiselinks=true,			                % calculate real height of the link
+breaklinks,                           % break links
+%backref=page,                        % backlinks in bibliography (section, slide, page, none)
+%pagebackref=true,                    % backlinks in bibliography
+hyperindex=true,                      % backlinkex index
+linktocpage=true,                     % ToC links pages
+bookmarks=true,                       % Bookmarks for PDF viewers
+bookmarksopen=true,                   % Open bookmarks
+bookmarksopenlevel=2,                 % How many levels to open
+bookmarksnumbered=true,               % Numbers in the bookmarks
+bookmarkstype=toc,                    % Type of bookmark
+plainpages=false,                     % Anchors even on plain pages?
+pageanchor=true,                      % Pages are linkable
+pdfstartview=FitH,                    % Open document with Fit Width
+pdfpagelabels=true,                   % set PDF page labels
+pdfpagemode=UseOutlines,              % Show bookmarks in viewer
+colorlinks,                           % Show colored links
+linkcolor=LinkColor,                  % Link color
+urlcolor=LinkColor,                   % URL color
+anchorcolor=LinkColor,                % Anchor color
+citecolor=LinkColor,                  % Cite color
+menucolor=LinkColor,                  % Menu color
+hypertexnames=true                    % Whatever ;)
+]{hyperref}                           % Use hyperlinks
+%\renewcommand*{\backref}[1]{[cited at page #1]} % Show formatted backlinks
+\usepackage{bookmark}                 % Manually add PDF bookmarks
+% ------------------------------------------------------------------------------
+
+
+% cleveref with fixes ----------------------------------------------------------
+\usepackage{cleveref}                 % To ref footnotes twice (use after hyperref)
+\crefformat{footnote}{#2\footnotemark[#1]#3}
+% ------------------------------------------------------------------------------
+
+
+% glossary (last package) ----------------------------------------------------
+\usepackage[xindy,nonumberlist,toc]{glossaries}
+\input{thesis_template.glos.tex}
+\setglossarystyle{altlist}
+\renewcommand*{\glsgroupskip}{}
+\makeglossaries%
+% ------------------------------------------------------------------------------
+
+
+% meta data --------------------------------------------------------------------
+\input{thesis_template.meta}
+\input{lib/resources/config/pdfmetadata}
+% ------------------------------------------------------------------------------
+
+
+% final fixes ------------------------------------------------------------------
+\righthyphenmin=2
+\tolerance=2000
+\emergencystretch=10pt
+% ------------------------------------------------------------------------------
+
+% PDF/A color profile ----------------------------------------------------------
+\immediate\pdfobj stream attr{/N 3}  file{lib/resources/pdfa/srgb.icc}% chktex 1
+\pdfcatalog{%
+/OutputIntents [ <<
+/Type /OutputIntent
+/S/GTS_PDFA1
+/DestOutputProfile \the\pdflastobj\space 0 R
+/OutputConditionIdentifier (sRGB IEC61966-2.1)% chktex 8
+/Info(sRGB IEC61966-2.1)% chktex 8 chktex 36
+>> ]
+}
+% ------------------------------------------------------------------------------

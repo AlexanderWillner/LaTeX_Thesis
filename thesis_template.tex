@@ -1,0 +1,74 @@
+%/**
+% * LaTeX thesis template (main file)
+% * @author : Alexander willner <alex@willner.ws>
+% * @url    : http://github.com/thesis
+% */
+
+% include config ---------------------------------------------------------------
+\RequirePackage{pdf14}                 % PDF/A2-b compatibility
+%\PassOptionsToPackage{demo}{graphicx} % for faster drafts
+\input{thesis_template.config.tex}     % inlcude general configuration
+\input{thesis_template.acro.tex}       % inlcude acronyms
+\DeclareUnicodeCharacter{0301}{}       % fixing an UTF-8 encoding issue
+%\usepackage[norefs,nocites]{refcheck} % useful, but not working with cref
+%\usepackage[doublespacing]{setspace}  % useful for reviewing a printout
+%\PassOptionsToPackage{cmyk}{xcolor}   % PDF/A compatibility, skipped
+%\usepackage[a-2b]{pdfx}               % PDF/A compatibility, skipped
+\newcommand{\isFinal}{true}            % Modify e.g. the title page
+% ------------------------------------------------------------------------------
+
+
+% include only required files for faster building ------------------------------
+%\includeonly{src/03_requirements,src/06_implementation}
+% ------------------------------------------------------------------------------
+
+
+% begin thesis -----------------------------------------------------------------
+\begin{document}
+    \frontmatter
+    \pagestyle{empty}
+    \pagenumbering{alph}
+    \include{src/00_title}
+    \cleardoublepage\include{src/00_deposition}
+    \cleardoublepage\include{src/00_dedication}
+    \cleardoublepage
+
+    \pagestyle{scrheadings}
+    \lohead[]{}
+    \pagenumbering{roman}
+    \setcounter{page}{1}
+    \include{src/00_acknowledgment}\cleardoublepage{}
+    \include{src/00_abstract}\cleardoublepage
+
+    \phantomsection
+    \include{src/00_tables}\cleardoublepage
+
+    \mainmatter
+    \lohead[\putchapterthumb]{\putchapterthumb}
+    \pagenumbering{arabic}
+    \setcounter{page}{1}
+    \linenumbers
+    \acresetall%
+    \include{src/01_introduction}
+    \include{src/02_sota}
+    \include{src/03_requirements}
+    \include{src/04_contrib1}
+    \include{src/05_contrib2}
+    \include{src/06_contrib3}
+    \include{src/07_evaluation}
+    \include{src/08_summary}
+    \nolinenumbers
+    \cleardoublepage
+
+    \appendix
+    \pagenumbering{Roman}
+    \setcounter{page}{1}
+    \include{src/09_appendix}
+
+    \cleardoublepage
+    \include{src/10_bibliography}
+
+    \backmatter
+    \cleardoublepage\include{src/11_index}
+\end{document}
+% ------------------------------------------------------------------------------

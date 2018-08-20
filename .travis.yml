@@ -1,0 +1,38 @@
+sudo: true
+dist: trusty
+addons:
+  apt:
+    sources:
+      - ppa:texlive-backports/ppa
+    packages:
+      - texlive-fonts-recommended
+      - texlive-fonts-extra
+      - texlive-xetex
+      - texlive-latex-recommended
+      - texlive-latex-extra
+      - texlive-humanities
+      - texlive-science
+      - texlive-pictures
+      - latex-xcolor
+      - pgf
+      - aspell
+      - aspell-en
+      - ghostscript
+      - gnuplot
+      - r-base
+      - graphviz
+      - fonts-sil-gentium
+      - fonts-inconsolata
+      - fonts-droid
+      - fonts-sil-gentium-basic
+install:
+  - sudo apt-get -y install fonts-sil-gentium fonts-inconsolata fonts-droid fonts-sil-gentium-basic cm-super biber texlive-lang-german lmodern chktex
+  - wget --no-check-certificate http://yar.fruct.org/attachments/download/362/plantuml_7707-1_all.deb
+  - sudo dpkg -i plantuml_7707-1_all.deb
+
+script:
+  - time make clean all verify bibchk || cat build.sh.log
+
+notifications:
+  email:
+    - alex@willner.ws
